@@ -121,6 +121,24 @@ print(f"\nCorrelation computed: {len(corr)} data points")
 print(f"  Max: {max(corr):.3f}  Min: {min(corr):.3f}")
 
 # ------------------------------------------------------------------
+# 5b. Drawdown calculation
+# ------------------------------------------------------------------
+
+def drawdown(indexed_series):
+    """Calculate drawdown from peak at each point in time."""
+    peak = indexed_series[0]
+    result = []
+    for v in indexed_series:
+        if v > peak:
+            peak = v
+        result.append(round((v - peak) / peak * 100, 2))
+    return result
+
+dd_msft  = drawdown(msft_idx)
+dd_googl = drawdown(googl_idx)
+dd_nvda  = drawdown(nvda_idx)
+
+# ------------------------------------------------------------------
 # 6. Chart styling helpers
 # ------------------------------------------------------------------
 
