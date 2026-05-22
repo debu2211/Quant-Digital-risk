@@ -256,4 +256,32 @@ plt.savefig(out3, dpi=150, bbox_inches='tight')
 plt.close()
 print(f"Saved: {out3}")
 
+# ------------------------------------------------------------------
+# 10. Chart 4 — Drawdown from peak
+# ------------------------------------------------------------------
+
+fig, ax = plt.subplots(figsize=(10, 4))
+fig.patch.set_facecolor('white')
+
+ax.plot(range(n), dd_msft,  color=COLORS['msft'],  linewidth=2, label='MSFT')
+ax.plot(range(n), dd_googl, color=COLORS['googl'], linewidth=2, label='GOOGL', linestyle='--')
+ax.plot(range(n), dd_nvda,  color=COLORS['nvda'],  linewidth=2, label='NVDA',  linestyle=':')
+ax.axhline(0, color=COLORS['grid'], linewidth=1)
+ax.fill_between(range(n), dd_nvda,  0, alpha=0.05, color=COLORS['nvda'])
+ax.fill_between(range(n), dd_msft,  0, alpha=0.05, color=COLORS['msft'])
+ax.fill_between(range(n), dd_googl, 0, alpha=0.05, color=COLORS['googl'])
+
+style_ax(ax)
+set_x_ticks(ax, labels)
+ax.set_ylabel('Drawdown from peak (%)', fontsize=9)
+ax.set_title('Chart 4 — Drawdown from peak: MSFT, GOOGL, NVDA (Jan 2022 – Dec 2024)',
+             fontsize=10, color=COLORS['text'], pad=12)
+ax.legend(fontsize=9, framealpha=0.6)
+
+plt.tight_layout()
+out4 = os.path.join(CHARTS_PATH, 'chart4_drawdown.png')
+plt.savefig(out4, dpi=150, bbox_inches='tight')
+plt.close()
+print(f"Saved: {out4}")
+
 print("\nAll charts saved successfully.")
