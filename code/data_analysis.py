@@ -76,7 +76,7 @@ rn = log_returns(nvda_raw)
 # 4. Rolling 3-month annualised volatility
 # ------------------------------------------------------------------
 
-def rolling_vol(rets, window=3):
+def rolling_vol(rets, window=6):
     """Annualised volatility from rolling window of log returns."""
     result = []
     for i in range(window - 1, len(rets)):
